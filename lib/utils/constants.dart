@@ -32,5 +32,11 @@ class Constants {
       'Are you sure you want to delete this vision item?';
 
   // Image Placeholders
-  static const String placeholderImageUrl = 'https://via.placeholder.com/150';
+  static const String placeholderImageUrl =
+      'https://picsum.photos/seed/picsum/200/300';
+  // appbar height for web
+  static const double appBarHeightWeb = 100.0;
+
+  static var itemText = 'Write your vision here';
+  static var imageUrl = 'Enter an image URL';
 }

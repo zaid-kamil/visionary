@@ -15,56 +15,75 @@ class VisionItemCard extends StatelessWidget {
     required this.onDelete,
   });
 
+  // Function to format date
+  String formatDate(DateTime date) {
+    return '${date.day}-${date.month}-${date.year}';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 4,
-      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Display item text
-            Text(
-              visionItem.itemText,
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+      margin: const EdgeInsets.all(15),
+      child: Column(
+        children: [
+          Expanded(
+            child: ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(8),
+                topRight: Radius.circular(8),
+              ),
+              child: FadeInImage.assetNetwork(
+                placeholder: "assets/images/default.jpg",
+                image: visionItem.imageUrl,
+                fit: BoxFit.cover,
+                width: double.infinity,
+                height: 100,
               ),
             ),
-            const SizedBox(height: 10),
-            // Display image if available
-            visionItem.imageUrl.isNotEmpty
-                ? Image.network(
-                    visionItem.imageUrl,
-                    height: 150,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                  )
-                : Image.asset(
-                    'assets/images/default.jpg',
-                    height: 150,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                  ),
-            const SizedBox(height: 10),
-            // Edit and Delete buttons
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ElevatedButton(
-                  onPressed: onEdit,
-                  child: const Text('Edit'),
+                // Display item text
+                // Display date if available
+                if (visionItem.timestamp != null)
+                  Text(
+                    "Added on: ${formatDate(visionItem.timestamp!)}",
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: Colors.grey,
+                    ),
+                  ),
+                const SizedBox(height: 6),
+                Text(
+                  visionItem.itemText,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                ElevatedButton(
-                  onPressed: onDelete,
-                  child: const Text('Delete'),
+                const SizedBox(height: 10),
+                // Edit and Delete buttons
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    OutlinedButton(
+                      onPressed: onEdit,
+                      child: const Text('Edit'),
+                    ),
+                    OutlinedButton(
+                      onPressed: onDelete,
+                      child: const Text('Delete'),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

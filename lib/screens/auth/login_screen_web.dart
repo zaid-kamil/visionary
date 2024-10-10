@@ -1,4 +1,4 @@
-import 'package:animate_gradient/animate_gradient.dart';
+import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
@@ -12,7 +12,8 @@ class LoginScreenWeb extends StatefulWidget {
   State<LoginScreenWeb> createState() => _LoginScreenWebState();
 }
 
-class _LoginScreenWebState extends State<LoginScreenWeb> {
+class _LoginScreenWebState extends State<LoginScreenWeb>
+    with TickerProviderStateMixin {
   final FirebaseService _firebaseService = FirebaseService();
 
   @override
@@ -38,28 +39,16 @@ class _LoginScreenWebState extends State<LoginScreenWeb> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(Constants.appTitle),
-        centerTitle: true,
-      ),
-      body: AnimateGradient(
-        primaryBeginGeometry: const AlignmentDirectional(0, 1),
-        primaryEndGeometry: const AlignmentDirectional(0, 2),
-        secondaryBeginGeometry: const AlignmentDirectional(2, 0),
-        secondaryEndGeometry: const AlignmentDirectional(0, -0.8),
-        textDirectionForGeometry: TextDirection.rtl,
-        primaryColors: const [
-          Colors.blueAccent,
-          Colors.greenAccent,
-          Colors.white,
-        ],
-        secondaryColors: const [
-          Colors.white,
-          Colors.orangeAccent,
-          Colors.yellowAccent,
-        ],
+      body: AnimatedBackground(
+        vsync: this,
+        behaviour: BubblesBehaviour(),
         child: Center(
           child: Container(
             width: 400,

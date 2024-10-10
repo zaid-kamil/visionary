@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:visionary/screens/auth/login_screen.dart';
@@ -16,7 +18,7 @@ Future<void> main() async {
 }
 
 class VisionaryApp extends StatelessWidget {
-  const VisionaryApp({Key? key}) : super(key: key);
+  const VisionaryApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,12 @@ class VisionaryApp extends StatelessWidget {
         Constants.visionBoardScreen: (context) => const VisionBoardScreen(),
         Constants.addEditItemScreen: (context) => const ManageItemScreen(),
       },
+      debugShowCheckedModeBanner: false,
+      scrollBehavior: const MaterialScrollBehavior().copyWith(dragDevices: {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.unknown
+      }),
     );
   }
 }
