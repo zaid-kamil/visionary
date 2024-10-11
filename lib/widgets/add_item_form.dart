@@ -65,7 +65,7 @@ class AddItemForm extends StatelessWidget {
                     onSubmit(itemText ?? '', imageUrl ?? '');
                   }
                 },
-                child: const Text('Save'),
+                child: const Text(Constants.saveVisionItem),
               ),
             ),
           ],

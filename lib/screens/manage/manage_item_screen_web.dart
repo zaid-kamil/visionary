@@ -44,7 +44,7 @@ class _ManageItemScreenState extends State<ManageItemScreenWeb>
           vsync: this,
           behaviour: BubblesBehaviour(),
           child: Center(
-            child: Container(
+            child: SizedBox(
               width: 500,
               child: Card(
                 margin: const EdgeInsets.all(16),

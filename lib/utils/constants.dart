@@ -17,10 +17,11 @@ class Constants {
   static const String addVisionItem = 'Add New Vision';
   static const String editVisionItem = 'Edit';
   static const String deleteVisionItem = 'Delete';
-  static const String emptyBoardMessage =
-      'Your vision board is empty. Start adding your dreams!';
+  static const String saveVisionItem = 'Save';
   static var itemText = 'Write your vision here';
   static var imageUrl = 'Enter an image URL';
+  static const String emptyBoardMessage =
+      'Your vision board is empty. Start adding your dreams!';
 
   // Firestore Fields
   static const String itemTextField = 'itemText';
