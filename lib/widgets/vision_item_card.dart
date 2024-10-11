@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:visionary/models/vision_item.dart';
+import 'package:visionary/utils/constants.dart';
 
 class VisionItemCard extends StatelessWidget {
   final VisionItem visionItem;
@@ -34,11 +35,19 @@ class VisionItemCard extends StatelessWidget {
                 topRight: Radius.circular(8),
               ),
               child: FadeInImage.assetNetwork(
-                placeholder: "assets/images/default.jpg",
+                placeholder: Constants.placeholderImage,
                 image: visionItem.imageUrl,
                 fit: BoxFit.cover,
                 width: double.infinity,
                 height: 100,
+                imageErrorBuilder: (context, error, stackTrace) {
+                  return Image.asset(
+                    Constants.placeholderImage,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: 100,
+                  );
+                },
               ),
             ),
           ),
@@ -47,8 +56,6 @@ class VisionItemCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Display item text
-                // Display date if available
                 if (visionItem.timestamp != null)
                   Text(
                     "Added on: ${formatDate(visionItem.timestamp!)}",
@@ -58,10 +65,11 @@ class VisionItemCard extends StatelessWidget {
                     ),
                   ),
                 const SizedBox(height: 6),
+                // Display item text
                 Text(
                   visionItem.itemText,
                   style: const TextStyle(
-                    fontSize: 18,
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -72,12 +80,14 @@ class VisionItemCard extends StatelessWidget {
                   children: [
                     OutlinedButton(
                       onPressed: onEdit,
-                      child: const Text('Edit'),
+                      child: const Text(Constants.editVisionItem),
                     ),
-                    OutlinedButton(
-                      onPressed: onDelete,
-                      child: const Text('Delete'),
-                    ),
+                    IconButton(
+                        onPressed: onDelete,
+                        icon: const Icon(Icons.delete),
+                        tooltip: Constants.deleteVisionItem,
+                        style: const ButtonStyle(
+                            iconColor: WidgetStatePropertyAll(Colors.red))),
                   ],
                 ),
               ],

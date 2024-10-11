@@ -8,6 +8,8 @@ import 'package:visionary/services/firebase_service.dart';
 import 'package:visionary/widgets/vision_app_bar_web.dart';
 import 'package:visionary/widgets/vision_item_card.dart';
 
+import '../../utils/constants.dart';
+
 class VisionBoardScreenWeb extends StatefulWidget {
   const VisionBoardScreenWeb({super.key});
 
@@ -19,13 +21,17 @@ class _VisionBoardScreenWebState extends State<VisionBoardScreenWeb>
     with TickerProviderStateMixin {
   final FirebaseService _firebaseService = FirebaseService();
   List<VisionItem> visionItems = [];
+  bool isLoading = true;
 
   // Function to fetch vision items
   Future<void> _fetchVisionItems() async {
     _firebaseService.getVisionItems().listen((items) {
-      setState(() {
-        visionItems = items;
-      });
+      if (mounted) {
+        setState(() {
+          visionItems = items;
+          isLoading = false;
+        });
+      }
     });
   }
 
@@ -46,7 +52,8 @@ class _VisionBoardScreenWebState extends State<VisionBoardScreenWeb>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const VisionAppBarWeb(),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
+        label: const Text(Constants.addVisionItem),
         onPressed: () {
           // goto add screen
           Navigator.push(
@@ -56,42 +63,57 @@ class _VisionBoardScreenWebState extends State<VisionBoardScreenWeb>
             ),
           );
         },
-        child: const Icon(Icons.add),
+        backgroundColor: Colors.orangeAccent,
+        icon: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: AnimatedBackground(
         vsync: this,
         behaviour: BubblesBehaviour(),
-        child: Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: GridView.builder(
-                itemCount: visionItems.length,
-                itemBuilder: (context, index) {
-                  final visionItem = visionItems[index];
-                  return VisionItemCard(
-                    visionItem: visionItem,
-                    onEdit: () {
-                      // goto edit screen
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ManageItemScreen(
+        child: AnimatedCrossFade(
+          duration: const Duration(milliseconds: 300),
+          firstChild: const Center(
+            child: CircularProgressIndicator(),
+          ),
+          secondChild: Row(
+            children: [
+              visionItems.isEmpty
+                  ? const Expanded(
+                      child: Center(
+                        child: Text(Constants.emptyBoardMessage),
+                      ),
+                    )
+                  : Expanded(
+                      child: GridView.builder(
+                        itemCount: visionItems.length,
+                        itemBuilder: (context, index) {
+                          final visionItem = visionItems[index];
+                          return VisionItemCard(
                             visionItem: visionItem,
-                          ),
+                            onEdit: () {
+                              // goto edit screen
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ManageItemScreen(
+                                    visionItem: visionItem,
+                                  ),
+                                ),
+                              );
+                            },
+                            onDelete: () => _deleteVisionItem(visionItem.id),
+                          );
+                        },
+                        gridDelegate:
+                            const SliverGridDelegateWithMaxCrossAxisExtent(
+                          maxCrossAxisExtent: 500,
                         ),
-                      );
-                    },
-                    onDelete: () => _deleteVisionItem(visionItem.id),
-                  );
-                },
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 500,
-                ),
-              ),
-            ),
-          ],
+                      ),
+                    ),
+            ],
+          ),
+          crossFadeState:
+              isLoading ? CrossFadeState.showFirst : CrossFadeState.showSecond,
         ),
       ),
     );
