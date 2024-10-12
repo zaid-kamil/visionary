@@ -1,24 +1,25 @@
+// lib/widgets/custom_app_bar.dart
+
 import 'package:flutter/material.dart';
+import 'package:visionary/services/firebase_service.dart';
+import 'package:visionary/utils/constants.dart';
 
-import '../services/firebase_service.dart';
-import '../utils/constants.dart';
-
-class VisionAppBarWeb extends StatefulWidget implements PreferredSizeWidget {
+class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String title;
 
-  const VisionAppBarWeb({
+  const CustomAppBar({
     super.key,
     this.title = Constants.appTitle,
   });
 
   @override
-  State<VisionAppBarWeb> createState() => _VisionAppBarWebState();
+  State<CustomAppBar> createState() => _CustomAppBarState();
 
   @override
   Size get preferredSize => const Size.fromHeight(Constants.appBarHeightWeb);
 }
 
-class _VisionAppBarWebState extends State<VisionAppBarWeb> {
+class _CustomAppBarState extends State<CustomAppBar> {
   final FirebaseService _firebaseService = FirebaseService();
 
   @override

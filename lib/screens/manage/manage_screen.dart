@@ -1,10 +1,10 @@
-// lib/screens/vision_board_screen.dart
+// lib/screens/manage/manage_screen.dart
 
 import 'package:flutter/material.dart';
 
 import '../../models/vision_item.dart';
 import '../responsive_widget.dart';
-import 'manage_item_screen_web.dart';
+import 'manage_screen_web.dart';
 
 class ManageItemScreen extends StatelessWidget {
   final VisionItem? visionItem;

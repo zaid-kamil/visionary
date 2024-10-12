@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:visionary/screens/auth/login_screen.dart';
 
 import 'firebase_options.dart';
-import 'screens/dashboard/vision_board_screen.dart';
-import 'screens/manage/manage_item_screen.dart';
+import 'screens/dashboard/board_screen.dart';
+import 'screens/manage/manage_screen.dart';
 import 'utils/constants.dart';
 
 Future<void> main() async {

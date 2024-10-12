@@ -1,7 +1,10 @@
+// lib/screens/auth/login_screen_web.dart
+
 import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
+import 'package:visionary/presenters/login_presenter.dart';
 import 'package:visionary/services/firebase_service.dart';
 import 'package:visionary/utils/constants.dart';
 
@@ -14,18 +17,19 @@ class LoginScreenWeb extends StatefulWidget {
 
 class _LoginScreenWebState extends State<LoginScreenWeb>
     with TickerProviderStateMixin {
-  final FirebaseService _firebaseService = FirebaseService();
+  late LoginPresenter _presenter;
 
   @override
   void initState() {
     super.initState();
-    if (_firebaseService.getCurrentUser() != null) {
+    _presenter = LoginPresenter(FirebaseService());
+    if (_presenter.isUserLoggedIn()) {
       Navigator.pushReplacementNamed(context, Constants.visionBoardScreen);
     }
   }
 
   void handleSignIn() async {
-    final result = await _firebaseService.signInWithGoogle();
+    final result = await _presenter.handleSignIn();
     if (result == 'Signed in with Google') {
       Navigator.pushReplacementNamed(context, Constants.visionBoardScreen);
     } else {
@@ -36,11 +40,6 @@ class _LoginScreenWebState extends State<LoginScreenWeb>
         ),
       );
     }
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 
   @override

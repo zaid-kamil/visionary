@@ -1,5 +1,6 @@
+// lib/screens/dashboard/board_screen.dart
 import 'package:flutter/material.dart';
-import 'package:visionary/screens/dashboard/vision_board_screen_web.dart';
+import 'package:visionary/screens/dashboard/board_screen_web.dart';
 
 import '../responsive_widget.dart';
 

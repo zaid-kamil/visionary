@@ -6,8 +6,8 @@ import 'package:visionary/utils/constants.dart';
 
 class VisionItemCard extends StatelessWidget {
   final VisionItem visionItem;
-  final VoidCallback onEdit; // Callback for edit action
-  final VoidCallback onDelete; // Callback for delete action
+  final VoidCallback onEdit;
+  final VoidCallback onDelete;
 
   const VisionItemCard({
     super.key,
@@ -16,7 +16,6 @@ class VisionItemCard extends StatelessWidget {
     required this.onDelete,
   });
 
-  // Function to format date
   String formatDate(DateTime date) {
     return '${date.day}-${date.month}-${date.year}';
   }
@@ -30,10 +29,8 @@ class VisionItemCard extends StatelessWidget {
         children: [
           Expanded(
             child: ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(8),
-                topRight: Radius.circular(8),
-              ),
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(8)),
               child: FadeInImage.assetNetwork(
                 placeholder: Constants.placeholderImage,
                 image: visionItem.imageUrl,
@@ -56,25 +53,17 @@ class VisionItemCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (visionItem.timestamp != null)
-                  Text(
-                    "Added on: ${formatDate(visionItem.timestamp!)}",
-                    style: const TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey,
-                    ),
-                  ),
+                Text(
+                  "Added on: ${formatDate(visionItem.timestamp)}",
+                  style: const TextStyle(fontSize: 12, color: Colors.grey),
+                ),
                 const SizedBox(height: 6),
-                // Display item text
                 Text(
                   visionItem.itemText,
                   style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                      fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 10),
-                // Edit and Delete buttons
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -83,11 +72,11 @@ class VisionItemCard extends StatelessWidget {
                       child: const Text(Constants.editVisionItem),
                     ),
                     IconButton(
-                        onPressed: onDelete,
-                        icon: const Icon(Icons.delete),
-                        tooltip: Constants.deleteVisionItem,
-                        style: const ButtonStyle(
-                            iconColor: WidgetStatePropertyAll(Colors.red))),
+                      onPressed: onDelete,
+                      icon: const Icon(Icons.delete),
+                      tooltip: Constants.deleteVisionItem,
+                      color: Colors.red,
+                    ),
                   ],
                 ),
               ],
