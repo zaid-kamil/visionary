@@ -2,6 +2,10 @@ import 'dart:ui';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:visionary/providers/board_provider.dart';
+import 'package:visionary/providers/login_provider.dart';
+import 'package:visionary/providers/manage_item_provider.dart';
 import 'package:visionary/screens/auth/login_screen.dart';
 
 import 'firebase_options.dart';
@@ -14,7 +18,14 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const VisionaryApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => LoginProvider()),
+      ChangeNotifierProvider(create: (context) => BoardProvider()),
+      ChangeNotifierProvider(create: (context) => ManageItemProvider()),
+    ],
+    child: const VisionaryApp(),
+  ));
 }
 
 class VisionaryApp extends StatelessWidget {

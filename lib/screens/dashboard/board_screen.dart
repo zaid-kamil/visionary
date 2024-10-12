@@ -1,8 +1,7 @@
 // lib/screens/dashboard/board_screen.dart
 import 'package:flutter/material.dart';
 import 'package:visionary/screens/dashboard/board_screen_web.dart';
-
-import '../responsive_widget.dart';
+import 'package:visionary/screens/responsive_widget.dart';
 
 class VisionBoardScreen extends StatelessWidget {
   const VisionBoardScreen({super.key});

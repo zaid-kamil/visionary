@@ -1,10 +1,8 @@
 // lib/screens/manage/manage_screen.dart
 
 import 'package:flutter/material.dart';
-
-import '../../models/vision_item.dart';
-import '../responsive_widget.dart';
-import 'manage_screen_web.dart';
+import 'package:visionary/models/vision_item.dart';
+import 'package:visionary/screens/responsive_widget.dart';
 
 class ManageItemScreen extends StatelessWidget {
   final VisionItem? visionItem;
@@ -13,10 +11,10 @@ class ManageItemScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveLayout(
-      mobileLayout: const Placeholder(),
-      tabletLayout: const Placeholder(),
-      webLayout: ManageItemScreenWeb(visionItem: visionItem),
+    return const ResponsiveLayout(
+      mobileLayout: Placeholder(),
+      tabletLayout: Placeholder(),
+      webLayout: ManageItemScreen(),
     );
   }
 }
