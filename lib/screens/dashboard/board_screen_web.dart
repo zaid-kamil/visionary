@@ -34,8 +34,7 @@ class _VisionBoardScreenWebState extends State<VisionBoardScreenWeb>
       });
     };
     _presenter.onError = (error) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(error)));
+      // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error)));
     };
     _presenter.fetchVisionItems();
   }

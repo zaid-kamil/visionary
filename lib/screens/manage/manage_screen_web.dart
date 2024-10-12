@@ -22,7 +22,7 @@ class _ManageItemScreenState extends State<ManageItemScreenWeb>
 
   Future<void> _handleFormSubmit(String itemText, String imageUrl) async {
     await _presenter.handleFormSubmit(itemText, imageUrl, widget.visionItem);
-    Navigator.pop(context);
+    if (mounted) Navigator.pop(context);
   }
 
   @override
