@@ -4,9 +4,6 @@ class Constants {
   // Firestore Collections
   static const String visionItemsCollection = 'vision_items';
 
-  // Firebase Auth Provider ID
-  static const String googleProviderId = 'google.com';
-
   // Routes (for navigation)
   static const String visionBoardScreen = '/visionBoard';
   static const String addEditItemScreen = '/addEditItem';
@@ -30,7 +27,7 @@ class Constants {
 
   // Miscellaneous
   static const String googleSignInButtonText = 'Sign in with Google';
-  static const String logoutButtonText = 'Logout';
+  static const String logoutTip = 'Logout';
   static const String confirmDeleteMessage =
       'Are you sure you want to delete this vision item?';
 

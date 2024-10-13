@@ -43,7 +43,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
           ),
           child: IconButton(
             icon: const Icon(Icons.logout),
-            tooltip: 'Logout',
+            tooltip: Constants.logoutTip,
             onPressed: () async {
               await _firebaseService.signOut();
               Navigator.pushReplacementNamed(context, Constants.loginScreen);

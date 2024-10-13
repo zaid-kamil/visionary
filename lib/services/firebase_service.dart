@@ -2,7 +2,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:visionary/models/vision_item.dart';
 
 import '../utils/constants.dart';
@@ -49,7 +48,7 @@ class FirebaseService {
       });
     } catch (e) {
       // Handle add item error
-      debugPrint("Error adding vision item: $e");
+      print("Error adding vision item: $e");
     }
   }
 
@@ -66,7 +65,7 @@ class FirebaseService {
       });
     } catch (e) {
       // Handle update item error
-      debugPrint("Error updating vision item: $e");
+      print("Error updating vision item: $e");
     }
   }
 
@@ -79,7 +78,7 @@ class FirebaseService {
           .delete();
     } catch (e) {
       // Handle delete item error
-      debugPrint("Error deleting vision item: $e");
+      print("Error deleting vision item: $e");
     }
   }
 

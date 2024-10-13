@@ -52,55 +52,43 @@ class _LoginScreenWebState extends State<LoginScreenWeb>
   Widget build(BuildContext context) {
     // ChangeNotifierProvider is used to provide the LoginProvider to the widget tree
     return ChangeNotifierProvider(
-      create: (_) => LoginProvider(),
-      child: Scaffold(
-        body: AnimatedBackground(
-          vsync: this,
-          behaviour: BubblesBehaviour(),
-          child: Center(
-            child: Container(
-              width: 400,
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Lottie.asset(
-                    'animations/login.json',
-                    width: 200,
-                    height: 200,
-                  ),
-                  const SizedBox(height: 20),
-                  const Text(
-                    'DartByte Dashboard',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  ElevatedButton.icon(
-                    onPressed: handleSignIn,
-                    icon: const FaIcon(FontAwesomeIcons.google),
-                    label: const Text(
-                      Constants.googleSignInButtonText,
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      iconColor: Colors.red,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
+        create: (_) => LoginProvider(),
+        child: Scaffold(
+            body: AnimatedBackground(
+                vsync: this,
+                behaviour: BubblesBehaviour(),
+                child: Center(
+                    child: Container(
+                        width: 400,
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Lottie.asset('animations/login.json',
+                                  width: 200, height: 200),
+                              const SizedBox(height: 20),
+                              const Text(
+                                'DartByte Dashboard',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(height: 10),
+                              ElevatedButton.icon(
+                                  onPressed: handleSignIn,
+                                  icon: const FaIcon(FontAwesomeIcons.google),
+                                  label: const Text(
+                                    Constants.googleSignInButtonText,
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.white,
+                                      iconColor: Colors.red,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                      ))),
+                              const SizedBox(height: 10),
+                            ]))))));
   }
 }
