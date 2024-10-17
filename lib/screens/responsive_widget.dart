@@ -1,4 +1,4 @@
-// lib/screens/responsive_widget.dart
+// screens/responsive_widget.dart
 import 'package:flutter/material.dart';
 
 class ResponsiveLayout extends StatelessWidget {

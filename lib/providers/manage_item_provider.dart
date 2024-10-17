@@ -1,4 +1,4 @@
-// lib/providers/manage_item_provider.dart
+// providers/manage_item_provider.dart
 
 import 'package:flutter/material.dart';
 import 'package:visionary/models/vision_item.dart';

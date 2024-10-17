@@ -42,7 +42,7 @@ class VisionaryApp extends StatelessWidget {
       routes: {
         Constants.loginScreen: (context) => const LoginScreen(),
         Constants.visionBoardScreen: (context) => const VisionBoardScreen(),
-        Constants.addEditItemScreen: (context) => const ManageItemScreen(),
+        Constants.addEditItemScreen: (context) => const ManageScreen(),
       },
       debugShowCheckedModeBanner: false,
       scrollBehavior: const MaterialScrollBehavior().copyWith(dragDevices: {
